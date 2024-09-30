@@ -1,7 +1,7 @@
 ---
 title: "Import practical"
-author: Your name here
-date: today
+author: Mathieu François
+date: 30/09/2024
 format: html
 ---
 
@@ -28,7 +28,8 @@ We will take advantage of the RStudio projects and store data files in a sub-fol
 5. Add a code chunk to load the libraries. You only need `readr`.
 
 ```{r}
-# Your answer in code
+# renv::restore()
+library(readr)
 
 ```
 
@@ -43,9 +44,7 @@ If you load the library only in the console and forget to place a chunk to load 
 
 ## Use `readr` to load your first file
 
-
 ### Load the `blood_fat` file
-
 
 ### Tip
 The relative path can be safely built using `"data/blood_fat.csv"` 
@@ -77,7 +76,8 @@ For example, you folder structure could be (depending on the picked names) as he
 
 
 ```{r}
-# Your answer in code
+
+readr::read_delim("data/blood_fat.csv")
 
 ```
 
@@ -91,8 +91,8 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 ##### Load again the same file, silencing the `read_delim()` message
 
 ```{r}
-# Your answer in code
 
+readr::read_delim("data/blood_fat.csv", show_col_types = FALSE)
 
 ```
 
@@ -106,7 +106,7 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 
 
-> Your answer as text
+> 25 rows and 5 columns
 
 
 
@@ -114,8 +114,7 @@ If we are happy with the guessed delimiter and the column names / types, we coul
 
 
 
-> Your answer as text
-
+> id: double, group: character, weight: double, age: double, fat: double
 
 
 Actually, both `age` and `id` are **integers**, and should be read as such.
@@ -130,8 +129,8 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 
 
 ```{r}
-# Your answer in code
 
+readr::read_delim("data/blood_fat.csv", col_types = cols(age = "i", id = "i"))
 
 
 ```
@@ -140,8 +139,8 @@ In the `col_types = cols(....)` you can use the columns bare names and either th
 ### Read the `blood_fat.csv` specifying the data types of `age` and `id` as integers, skipping `weight`.
 
 ```{r}
-# Your answer in code
 
+readr::read_delim("data/blood_fat.csv", col_types = cols(age = "i", id = "i", weight = "_"))
 
 
 
